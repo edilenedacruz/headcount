@@ -1,0 +1,43 @@
+{
+  "Unit Tests": {
+    "coverage": {
+      "/Users/edilene/1611/projects/headcount/lib/district_repo.rb": [
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/Users/edilene/1611/projects/headcount/lib/data_parser.rb": [
+        1,
+        null,
+        1,
+        1,
+        2,
+        2,
+        null,
+        null,
+        null
+      ],
+      "/Users/edilene/1611/projects/headcount/lib/district.rb": [
+        1,
+        1,
+        1,
+        0,
+        null,
+        null
+      ]
+    },
+    "timestamp": 1483508450
+  }
+}
