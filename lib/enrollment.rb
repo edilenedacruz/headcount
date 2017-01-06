@@ -12,6 +12,6 @@ class Enrollment
   end
 
   def kindergarten_participation_in_year(year)
-    kindergarten_participation[year].round(3)
+    kindergarten_participation[year]
   end
 end

@@ -1,13 +1,14 @@
 require 'csv'
-require_relative 'data_parser'
 require_relative '../lib/district'
+require_relative '../lib/enrollment_repository'
+require_relative '../lib/enrollment'
 
 
 class DistrictRepository
-  include DataParser
-  attr_reader :districts
-  def initialize
+  attr_reader :districts, :enrollment
+  def initialize(parent = nil)
     @districts = {}
+    @enrollment = EnrollmentRepository.new
   end
 
   def load_data(files)
@@ -28,5 +29,10 @@ class DistrictRepository
       district[0].include?(fragment.upcase)
     end
   end
+
+  # def connect_with_enrollment(name)
+  #   binding.pry
+  #   enrollment.enrollments[name]
+  # end
 
 end

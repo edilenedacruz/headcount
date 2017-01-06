@@ -1,6 +1,6 @@
 class EnrollmentRepository
   attr_reader :enrollments
-  def initialize
+  def initialize(name = nil)
     @enrollments = {}
   end
 
@@ -20,6 +20,5 @@ class EnrollmentRepository
 
   def find_by_name(name)
     @enrollments[name.upcase]
-    binding.pry
   end
 end
