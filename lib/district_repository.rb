@@ -5,20 +5,26 @@ require_relative '../lib/enrollment'
 
 
 class DistrictRepository
-  attr_reader :districts, :enrollment
-  def initialize(parent = nil)
+  attr_reader :districts, :enrollment_repo
+  def initialize
     @districts = {}
-    @enrollment = EnrollmentRepository.new
+    @enrollment_repo = EnrollmentRepository.new
   end
 
   def load_data(files)
-    filename = files[:enrollment][:kindergarten]
-    contents = CSV.open filename, headers: true, header_converters: :symbol
+    dr_files = files[:enrollment][:kindergarten]
+    dr_repo(dr_files)
+    @enrollment_repo.load_data(files) if files[:enrollment]
+  end
+
+  def dr_repo(dr_files)
+    contents = CSV.open dr_files, headers: true, header_converters: :symbol
     contents.map do |row|
       name = row[:location].upcase
-      @districts[name] = District.new({:name => name})
+      @districts[name] = District.new({:name => name}, self)
     end
   end
+
 
   def find_by_name(name)
     @districts[name.upcase]
@@ -30,9 +36,17 @@ class DistrictRepository
     end
   end
 
-  # def connect_with_enrollment(name)
-  #   binding.pry
-  #   enrollment.enrollments[name]
-  # end
+  def connect_with_enrollment(name)
+    enrollment_repo.enrollments[name.upcase]
+  end
 
 end
+
+# def load_data(files)
+#   filename = files[:enrollment][:kindergarten]
+#   contents = CSV.open filename, headers: true, header_converters: :symbol
+#   contents.map do |row|
+#     name = row[:location].upcase
+#     @districts[name] = District.new({:name => name}, self)
+#   end
+# end

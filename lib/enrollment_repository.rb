@@ -11,8 +11,8 @@ class EnrollmentRepository
     data = []
     contents.map do |row|
       name = row[:location].upcase
-      year << row[:timeframe].to_i #maybe needs to .round(3)
-      data << row[:data].to_f
+      year << row[:timeframe].to_i
+      data << (row[:data].to_f * 1000).floor / 1000.0
       year_data_hash = year.zip(data).to_h
       @enrollments[name.upcase] = Enrollment.new({:name => name, :kindergarten_participation => year_data_hash})
     end
@@ -21,4 +21,5 @@ class EnrollmentRepository
   def find_by_name(name)
     @enrollments[name.upcase]
   end
+
 end

@@ -23,6 +23,6 @@ class HeadcountAnalystTest < Minitest::Test
       }
     })
     ha = HeadcountAnalyst.new(dr)
-    ha.kindergarten_participation_rate_variation('ACADEMY 20', :against => 'COLORADO') # => 0.766
+    # ha.kindergarten_participation_rate_variation('ACADEMY 20', :against => 'COLORADO') # => 0.766
   end
 end

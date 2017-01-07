@@ -1,16 +1,12 @@
+
 class District
-  attr_reader :name, :parent
-  def initialize(district_data, parent = nil)
+  attr_reader :name, :district_repo
+  def initialize(district_data, district_repo = nil)
     @name = district_data[:name].upcase
-    @parent = parent
-    # binding.pry
+    @district_repo = district_repo
   end
 
-  # def enrollment
-  #   enrollment = EnrollmentRepository.new
-  #   binding.pry
-  #   enrollment.load_data(name)
-  #   binding.pry
-  # #   parent.connect_with_enrollment(name)
-  # end
+  def enrollment
+    district_repo.connect_with_enrollment(name)
+  end
 end
