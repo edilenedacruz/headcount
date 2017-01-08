@@ -1,14 +1,14 @@
 require_relative 'test_helper'
 require_relative '../lib/district_repository'
 require_relative '../lib/district'
-require-relative '..test/fixtures'
 
 class DistrictRepo < Minitest::Test
   def test_for_destrict_repository
     dr = DistrictRepository.new
     dr.load_data({
       :enrollment => {
-        :kindergarten => "./fixtures/Kindergartners_in_full_day_program_sample.csv"
+        :kindergarten => "test/fixtures/Kindergartners_in_full_day_program_sample.csv",
+        :high_school_graduation => "test/fixtures/high_school_graduation_rates_samples.csv"
       }
     })
 
@@ -20,8 +20,8 @@ class DistrictRepo < Minitest::Test
     dr = DistrictRepository.new
     dr.load_data({
       :enrollment => {
-        :kindergarten => "./fixtures/Kindergartners_in_full_day_program_sample.csv",
-        :high_school_graduation => "./fixtures/high_school_graduation_rates_samples.csv"
+        :kindergarten => "test/fixtures/Kindergartners_in_full_day_program_sample.csv",
+        :high_school_graduation => "test/fixtures/high_school_graduation_rates_samples.csv"
       }
     })
     district = dr.find_by_name("ACADEMY 20")
@@ -32,8 +32,8 @@ class DistrictRepo < Minitest::Test
     dr = DistrictRepository.new
     dr.load_data({
       :enrollment => {
-        :kindergarten => "./fixtures/Kindergartners_in_full_day_program_sample.csv",
-        :high_school_graduation => "./fixtures/high_school_graduation_rates_samples.csv"
+        :kindergarten => "test/fixtures/Kindergartners_in_full_day_program_sample.csv",
+        :high_school_graduation => "test/fixtures/high_school_graduation_rates_samples.csv"
       }
     })
 
@@ -44,8 +44,8 @@ class DistrictRepo < Minitest::Test
     dr = DistrictRepository.new
     dr.load_data({
       :enrollment => {
-        :kindergarten => "./fixtures/Kindergartners_in_full_day_program_sample.csv",
-        :high_school_graduation => "./fixtures/high_school_graduation_rates_samples.csv"
+        :kindergarten => "test/fixtures/Kindergartners_in_full_day_program_sample.csv",
+        :high_school_graduation => "test/fixtures/high_school_graduation_rates_samples.csv"
       }
     })
 
