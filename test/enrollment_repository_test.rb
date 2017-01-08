@@ -7,7 +7,8 @@ class EnrollmentRepositoryTest < Minitest::Test
     er = EnrollmentRepository.new
     er.load_data({
       :enrollment => {
-        :kindergarten => "./data/Kindergartners in full-day program.csv"
+        :kindergarten => "test/fixtures/Kindergartners_in_full_day_program_sample.csv",
+        :high_school_graduation => "test/fixtures/high_school_graduation_rates_samples.csv"
       }
       })
       enrollment = er.find_by_name("Academy 20")
@@ -18,7 +19,8 @@ class EnrollmentRepositoryTest < Minitest::Test
     er = EnrollmentRepository.new
     er.load_data({
       :enrollment => {
-        :kindergarten => "./data/Kindergartners in full-day program.csv"
+        :kindergarten => "test/fixtures/Kindergartners_in_full_day_program_sample.csv",
+        :high_school_graduation => "test/fixtures/high_school_graduation_rates_samples.csv"
       }
       })
       enrollment = er.find_by_name("Ken Lee")

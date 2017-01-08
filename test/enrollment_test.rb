@@ -20,7 +20,7 @@ class EnrollmentTest < Minitest::Test
   end
 
   def test_it_can_access_kindergarten_participation_in_year_provided
-    e = Enrollment.new({:name => "ACADEMY 20", :kindergarten_participation => {2010 => 0.3915, 2011 => 0.35356, 2012 => 0.2677}})
-    assert_equal 0.392, e.kindergarten_participation_in_year(2010)
+    e = Enrollment.new({:name => "ACADEMY 20", :kindergarten_participation => {2010 => 0.391, 2011 => 0.3535, 2012 => 0.267}})
+    assert_in_delta 0.391, e.kindergarten_participation_in_year(2010), 0.005
   end
 end
