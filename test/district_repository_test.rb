@@ -8,11 +8,10 @@ class DistrictRepo < Minitest::Test
     dr = DistrictRepository.new
     dr.load_data({
       :enrollment => {
-        :kindergarten => "test/fixtures/Kindergartners_in_full_day_program_sample.csv",
-        :high_school_graduation => "test/fixtures/high_school_graduation_rates_samples.csv"
+        :kindergarten => "./data/Kindergartners in full-day program.csv",
+        :high_school_graduation => "./data/High school graduation rates.csv"
       }
     })
-
     district = dr.find_by_name("COLORADO")
     assert_instance_of District, district
   end
@@ -21,8 +20,8 @@ class DistrictRepo < Minitest::Test
     dr = DistrictRepository.new
     dr.load_data({
       :enrollment => {
-        :kindergarten => "test/fixtures/Kindergartners_in_full_day_program_sample.csv",
-        :high_school_graduation => "test/fixtures/high_school_graduation_rates_samples.csv"
+        :kindergarten => "./data/Kindergartners in full-day program.csv",
+        :high_school_graduation => "./data/High school graduation rates.csv"
       }
     })
     district = dr.find_by_name("ACADEMY 20")
@@ -33,8 +32,8 @@ class DistrictRepo < Minitest::Test
     dr = DistrictRepository.new
     dr.load_data({
       :enrollment => {
-        :kindergarten => "test/fixtures/Kindergartners_in_full_day_program_sample.csv",
-        :high_school_graduation => "test/fixtures/high_school_graduation_rates_samples.csv"
+        :kindergarten => "./data/Kindergartners in full-day program.csv",
+        :high_school_graduation => "./data/High school graduation rates.csv"
       }
     })
 
@@ -45,19 +44,20 @@ class DistrictRepo < Minitest::Test
     dr = DistrictRepository.new
     dr.load_data({
       :enrollment => {
-        :kindergarten => "test/fixtures/Kindergartners_in_full_day_program_sample.csv",
-        :high_school_graduation => "test/fixtures/high_school_graduation_rates_samples.csv"
+        :kindergarten => "./data/Kindergartners in full-day program.csv",
+        :high_school_graduation => "./data/High school graduation rates.csv"
       }
     })
 
-    assert_equal 1, dr.find_all_matching("co").count
+    assert_equal 19, dr.find_all_matching("ar").count
   end
 
   def test_it_creates_enrollment_repository
     dr = DistrictRepository.new
     dr.load_data({
-    :enrollment => {
-      :kindergarten => "./data/Kindergartners in full-day program.csv"
+      :enrollment => {
+        :kindergarten => "./data/Kindergartners in full-day program.csv",
+        :high_school_graduation => "./data/High school graduation rates.csv"
       }
     })
     district = dr.find_by_name("Academy 20")
