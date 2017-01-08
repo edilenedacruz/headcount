@@ -18,6 +18,8 @@ class EnrollmentRepository
       year_data_hash = year.zip(data).to_h
       @enrollments[name.upcase] = Enrollment.new({:name => name, :kindergarten_participation => year_data_hash})
     end
+
+  def load_data(files)
   end
 
   def find_by_name(name)
