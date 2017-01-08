@@ -50,7 +50,7 @@ class DistrictRepo < Minitest::Test
       }
     })
 
-    assert_equal 19, dr.find_all_matching("ar").count
+    assert_equal 1, dr.find_all_matching("co").count
   end
 
   def test_it_creates_enrollment_repository
