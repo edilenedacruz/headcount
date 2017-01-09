@@ -1,5 +1,5 @@
-require_relative '../lib/district_repository'
 require_relative '../lib/enrollment_repository'
+require_relative '../lib/district'
 
 
 class HeadcountAnalyst
@@ -16,7 +16,7 @@ class HeadcountAnalyst
 
   def kind_average_calculation(district)
     get_data = @district_repo.enrollment_repo.find_by_name(district).kindergarten_participation_by_year.values
-    average = get_data.inject(:+) / get_data.size
+    get_data.inject(:+) / get_data.size
   end
 
   def kindergarten_participation_rate_variation_trend(district_1, district_2)
@@ -32,7 +32,7 @@ class HeadcountAnalyst
   def kindergarten_participation_against_high_school_graduation(district)
     kindergarten_variation = kindergarten_participation_rate_variation(district, :against => "COLORADO")
     graduation_variation = graduation_variation_calculation_against_state(district)
-    kindergarten_graduation_variance = (kindergarten_variation / graduation_variation).to_s[0..4].to_f
+    (kindergarten_variation / graduation_variation).to_s[0..4].to_f
   end
 
   def graduation_variation_calculation_against_state(district)
@@ -40,7 +40,7 @@ class HeadcountAnalyst
     dist_average = get_data.inject(:+) / get_data.size
     get_data_state = @district_repo.enrollment_repo.find_by_name("COLORADO").graduation_rate_by_year.values
     state_average = get_data_state.inject(:+) /get_data_state.size
-    grad_variation = (dist_average / state_average).to_s[0..4].to_f
+    (dist_average / state_average).to_s[0..4].to_f
   end
 
   def kindergarten_participation_correlates_with_high_school_graduation(district)

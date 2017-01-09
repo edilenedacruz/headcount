@@ -1,6 +1,8 @@
 require_relative 'test_helper'
 require_relative '../lib/enrollment_repository'
 require_relative '../lib/enrollment'
+require_relative '../lib/district'
+require_relative '../lib/district_repository'
 
 class EnrollmentRepositoryTest < Minitest::Test
   # attr_reader :er
