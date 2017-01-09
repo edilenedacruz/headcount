@@ -7,7 +7,7 @@ class DataParserTest < Minitest::Test
     filename = ({
         :kindergarten => "./data/Kindergartners in full-day program.csv",
         :high_school_graduation => "./data/High school graduation rates.csv"
-      
+
     })
     assert_instance_of Array, DataParser.parse(filename)
   end
@@ -17,6 +17,6 @@ class DataParserTest < Minitest::Test
       :kindergarten => "./data/Kindergartners in full-day program.csv",
       :high_school_graduation => "./data/High school graduation rates.csv"
     }
-    assert_instance_of CSV, parse(filename).first.last
+    assert_instance_of CSV, DataParser.parse(filename).first.last
   end
 end
