@@ -25,7 +25,30 @@ class HeadcountAnalyst
       calc[key] = ((get_data[key] / get_data_2[key]).to_f * 1000 / 1000.0).round(3)
     end
     calc
-    # binding.pry
+  end
 
+  def kindergarten_participation_against_high_school_graduation(district)
+    kindergarten_variation = kindergarten_participation_rate_variation(district, :against => "COLORADO")
+    graduation_variation = graduation_variation_calculation_against_state(district)
+    kindergarten_graduation_variance = ((kindergarten_variation / graduation_variation).to_f * 1000 / 1000.0).round(3)
+  end
+
+  def graduation_variation_calculation_against_state(district)
+    get_data = @district_repo.enrollment_repo.find_by_name(district).graduation_rate_by_year.values
+    dist_average = get_data.inject(:+) / get_data.size
+    get_data_state = @district_repo.enrollment_repo.find_by_name("COLORADO").graduation_rate_by_year.values
+    state_average = get_data_state.inject(:+) /get_data_state.size
+    grad_variation = ((dist_average / state_average).to_f * 1000 / 1000.0).round(3)
+  end
+
+  def kindergarten_participation_correlates_with_high_school_graduation(district)
+    district_name = district[:for]
+      if kindergarten_participation_against_high_school_graduation(district_name).between?(0.6, 1.5)
+        true
+      elsif district_name == "STATEWIDE"
+        #then calculate for all and then see if more then 70? of districts across state show a correlation
+      elsif district[:across]
+        #calculate correlation across subset of districts
+      end
   end
 end

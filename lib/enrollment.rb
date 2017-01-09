@@ -21,7 +21,6 @@ class Enrollment
   end
 
   def graduation_rate_in_year(year)
-    # binding.pry
     high_school_graduation[year]
   end
 end
