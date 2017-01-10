@@ -35,9 +35,9 @@ class HeadcountAnalystTest < Minitest::Test
   end
 
   def test_kindergarten_variation_against_high_school_graduation
-    assert_in_delta 0.641, ha.kindergarten_participation_against_high_school_graduation('ACADEMY 20'), 0.005
-    assert_in_delta 0.548, ha.kindergarten_participation_against_high_school_graduation('MONTROSE COUNTY RE-1J'), 0.005
-assert_in_delta 0.800, ha.kindergarten_participation_against_high_school_graduation('STEAMBOAT SPRINGS RE-2'), 0.005
+    assert_in_delta 0.641, ha.indergarten_participation_against_high_school_graduation('ACADEMY 20'), 0.005
+    assert_in_delta 0.548, ha.indergarten_participation_against_high_school_graduation('MONTROSE COUNTY RE-1J'), 0.005
+assert_in_delta 0.800, ha.indergarten_participation_against_high_school_graduation('STEAMBOAT SPRINGS RE-2'), 0.005
   end
 
   def test_kindergarten_participation_predicts_high_school_graduation
@@ -45,5 +45,14 @@ assert_in_delta 0.800, ha.kindergarten_participation_against_high_school_graduat
     refute ha.kindergarten_participation_correlates_with_high_school_graduation(for: 'MONTROSE COUNTY RE-1J')
     refute ha.kindergarten_participation_correlates_with_high_school_graduation(for: 'SIERRA GRANDE R-30')
     assert ha.kindergarten_participation_correlates_with_high_school_graduation(for: 'PARK (ESTES PARK) R-3')
+  end
+
+  def test_kindergarten_participation_predicts_high_school_graduation_against_state
+    refute ha.kindergarten_participation_correlates_with_high_school_graduation(:for => 'STATEWIDE')
+  end
+
+  def test_kindergarten_hs_prediction_multi_district
+    districts = ["ACADEMY 20", 'PARK (ESTES PARK) R-3', 'YUMA SCHOOL DISTRICT 1']
+    assert ha.kindergarten_participation_correlates_with_high_school_graduation(across: districts)
   end
 end

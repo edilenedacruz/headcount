@@ -1,5 +1,6 @@
 require_relative '../lib/enrollment_repository'
 require_relative '../lib/district'
+require_relative '../lib/enrollment'
 
 
 class HeadcountAnalyst
@@ -44,13 +45,27 @@ class HeadcountAnalyst
   end
 
   def kindergarten_participation_correlates_with_high_school_graduation(district)
-    district_name = district[:for]
-      if kindergarten_participation_against_high_school_graduation(district_name).between?(0.6, 1.5)
-        true
-      elsif district_name == "STATEWIDE"
-        #then calculate for all and then see if more then 70? of districts across state show a correlation
-      elsif district[:across]
-        #calculate correlation across subset of districts
-      end
+    if district[:for] == "STATEWIDE"
+      statewide_correlation
+    elsif district.has_key?(:across)
+      districts = district[:across]
+      multi_correlation = districts.map do |district_name|
+        kindergarten_participation_against_high_school_graduation(district_name).between?(0.6, 1.5)
+        end
+      multi_correlation.count(true).to_f / multi_correlation.size > 0.70
+    else
+      kindergarten_participation_against_high_school_graduation(district[:for]).between?(0.6, 1.5)
+    end
   end
+
+  def statewide_correlation
+    # without_colo = @district_repo.districts.delete("COLORADO")
+    # without_colo.districts.map do |name, value|
+
+      correlation = @district_repo.districts.map do |name, district_info|
+        kindergarten_participation_against_high_school_graduation(name).between?(0.6, 1.5)
+      end
+      correlation.count(true).to_f / correlation.size > 0.70
+  end
+
 end
