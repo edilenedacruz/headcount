@@ -59,13 +59,13 @@ class HeadcountAnalyst
   end
 
   def statewide_correlation
-    # without_colo = @district_repo.districts.delete("COLORADO")
-    # without_colo.districts.map do |name, value|
-
-      correlation = @district_repo.districts.map do |name, district_info|
-        kindergarten_participation_against_high_school_graduation(name).between?(0.6, 1.5)
-      end
-      correlation.count(true).to_f / correlation.size > 0.70
+    without_colo = @district_repo.districts.select do |name, district|
+      name != "COLORADO"
+    end
+    without_colo.keys.map do |district_name|
+    kindergarten_participation_against_high_school_graduation(district_name).between?(0.6, 1.5)
+    end
+    without_colo.count(true).to_f / without_colo.size > 0.70
   end
 
 end

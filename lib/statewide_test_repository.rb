@@ -42,7 +42,7 @@ class StatewideTestRepository
 
   def fills_third_grade(csv_files, row)
     find_by_name(row[:location])
-    binding.pry
+    # binding.pry
   end
 
 end
