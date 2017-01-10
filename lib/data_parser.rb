@@ -1,9 +1,9 @@
 require 'csv'
 
 module DataParser
-  def parse(filename)
-    filename.map do |criteria, file|
-      [criteria, (CSV.open file, headers: true, header_converters: :symbol)]
+  def self.parse(filename)
+    filename.map do |key, file|
+      [key, (CSV.open file, headers: true, header_converters: :symbol)]
     end
   end
 end

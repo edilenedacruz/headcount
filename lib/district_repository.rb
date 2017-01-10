@@ -1,10 +1,10 @@
 require 'csv'
+require_relative '../lib/data_parser'
+require_relative '../lib/headcount_analyst'
 require_relative '../lib/district'
-require_relative '../lib/enrollment_repository'
-require_relative '../lib/enrollment'
-
 
 class DistrictRepository
+  include DataParser
   attr_reader :districts, :enrollment_repo
   def initialize
     @districts = {}
@@ -12,16 +12,17 @@ class DistrictRepository
   end
 
   def load_data(files)
-    dr_files = files[:enrollment][:kindergarten]
-    dr_repo(dr_files)
+    csv_files = DataParser.parse(files[:enrollment])
+    dr_repo(csv_files[0])
     @enrollment_repo.load_data(files) if files[:enrollment]
   end
 
-  def dr_repo(dr_files)
-    contents = CSV.open dr_files, headers: true, header_converters: :symbol
-    contents.map do |row|
+  def dr_repo(csv_file)
+
+    kinder_data = csv_file[1]
+    kinder_data.map do |row|
       name = row[:location].upcase
-      @districts[name] = District.new({:name => name}, self)
+      @districts[name] = District.new({:name => name}, self) if !find_by_name(name)
     end
   end
 
@@ -41,12 +42,3 @@ class DistrictRepository
   end
 
 end
-
-# def load_data(files)
-#   filename = files[:enrollment][:kindergarten]
-#   contents = CSV.open filename, headers: true, header_converters: :symbol
-#   contents.map do |row|
-#     name = row[:location].upcase
-#     @districts[name] = District.new({:name => name}, self)
-#   end
-# end
