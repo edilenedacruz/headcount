@@ -19,13 +19,13 @@ class StatewideTest
   end
 
   def proficient_by_grade(grade)
-    # raise UnknownDataError unless GRADES.include?(grade)
+    raise UnknownDataError unless GRADES.include?(grade)
     return third_grade if grade == 3
     return eighth_grade if grade == 8
   end
 
   def proficient_by_race_or_ethnicity(race)
-    #raise UnknownRaceError unless RACES.include?(race)
+    raise UnknownDataError unless RACES.include?(race)
     race_proficiency = {}
     math_proficiency_for_race(race, race_proficiency)
     reading_proficiency_for_race(race, race_proficiency)
@@ -52,20 +52,22 @@ class StatewideTest
   end
 
   def proficient_for_subject_by_grade_in_year(subject, grade, year)
-    # raise UnknownDataError unless SUBJECT.include?(subject)
-    # raise UnknownDataError unless GRADES.include?(grade)
+    raise UnknownDataError unless SUBJECT.include?(subject)
+    raise UnknownDataError unless GRADES.include?(grade)
+
     subj = subject.downcase.to_sym
     yr = year.to_i
-    if grade == 3
-      gr = third_grade
-    else
-      gr = eighth_grade
-    end
-  gr[year][subject]
+      if grade == 3
+        gr = third_grade
+      else
+        gr = eighth_grade
+      end
+      gr[year][subject]
+    # return "N/A" if gr[year][subject] == 0.0
   end
 
   def proficient_for_subject_by_race_in_year(subject, race, year)
-    # raise UnknownDataError unless SUBJECT.include?(subject)
+    raise UnknownDataError unless SUBJECT.include?(subject)
     subj = subject.downcase.to_sym
     rc = race.downcase.to_sym
     yr = year.to_i

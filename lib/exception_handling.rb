@@ -1,4 +1,4 @@
-class UnknowDataError < StandardError
+class UnknownDataError < StandardError
 end
 
 class UnknownRaceError < StandardError
