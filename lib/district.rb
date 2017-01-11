@@ -9,4 +9,8 @@ class District
   def enrollment
     district_repo.connect_with_enrollment(name)
   end
+
+  def statewide_test
+    district_repo.connect_with_statewide_test(name)
+  end
 end
