@@ -12,15 +12,15 @@ class DistrictRepo < Minitest::Test
     @dr = DistrictRepository.new
     dr.load_data({
       :enrollment => {
-        :kindergarten => "test/fixtures/Kinder in full-day program.csv",
-        :high_school_graduation => "test/fixtures/HS graduation rates.csv",
+        :kindergarten => "test/fixtures/Kindergartners in full-day program.csv",
+        :high_school_graduation => "test/fixtures/High school graduation rates.csv",
       },
       :statewide_testing => {
-        :third_grade => "test/fixtures/3rd grade CSAP_TCAP.csv",
-        :eighth_grade => "test/fixtures/8th grade CSAP_TCAP.csv",
-        :math => "test/fixtures/CSAP_TCAP by race_ethnicity_ Math.csv",
-        :reading => "test/fixtures/CSAP_TCAP by race_ethnicity_ Reading.csv",
-        :writing => "test/fixtures/CSAP_TCAP by race_ethnicity_ Writing.csv"
+        :third_grade => "test/fixtures/3rd grade students scoring proficient or above on the CSAP_TCAP.csv",
+        :eighth_grade => "test/fixtures/8th grade students scoring proficient or above on the CSAP_TCAP.csv",
+        :math => "test/fixtures/Average proficiency on the CSAP_TCAP by race_ethnicity_ Math.csv",
+        :reading => "test/fixtures/Average proficiency on the CSAP_TCAP by race_ethnicity_ Reading.csv",
+        :writing => "test/fixtures/Average proficiency on the CSAP_TCAP by race_ethnicity_ Writing.csv"
       }
     })
   end
