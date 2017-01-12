@@ -1,12 +1,17 @@
 require 'csv'
-require_relative '../lib/statewide_test_repository'
 require_relative '../lib/exception_handling'
 
 class StatewideTest
-  attr_reader :name, :third_grade, :eighth_grade, :math, :reading, :writing
+  attr_reader :name,
+              :third_grade,
+              :eighth_grade,
+              :math,
+              :reading,
+              :writing
 
   GRADES = [3, 8]
-  RACES = [:asian, :black, :pacific_islander, :hispanic, :native_american, :two_or_more, :white]
+  RACES = [:asian, :black, :pacific_islander, :hispanic, :native_american,
+    :two_or_more, :white]
   SUBJECT = [:math, :writing, :reading]
 
   def initialize(statewide_test_data)
@@ -34,44 +39,32 @@ class StatewideTest
   end
 
   def math_proficiency_for_race(race, race_proficiency)
-    @math.map do |year, data|
-      race_proficiency[year] = {:math => data[race]}
-    end
+    @math.map { |yr, data| race_proficiency[yr] = {:math => data[race]} }
   end
 
   def reading_proficiency_for_race(race, race_proficiency)
-    @reading.map do |year, data|
-      race_proficiency[year].store(:reading, data[race])
-    end
+    @reading.map { |yr, data| race_proficiency[yr].store(:reading, data[race]) }
   end
 
   def writing_proficiency_for_race(race, race_proficiency)
-    @writing.map do |year, data|
-    race_proficiency[year].store(:writing, data[race])
-    end
+    @writing.map { |yr, data| race_proficiency[yr].store(:writing, data[race]) }
   end
 
   def proficient_for_subject_by_grade_in_year(subject, grade, year)
     raise UnknownDataError unless SUBJECT.include?(subject)
     raise UnknownDataError unless GRADES.include?(grade)
-
-    subj = subject.downcase.to_sym
-    yr = year.to_i
       if grade == 3
-        gr = third_grade
+        grade = third_grade
       else
-        gr = eighth_grade
+        grade = eighth_grade
       end
-      return "N/A" if gr[year][subject] == 0.0
-      gr[year][subject]
+      return "N/A" if grade[year][subject] == 0.0
+      grade[year][subject]
   end
 
   def proficient_for_subject_by_race_in_year(subject, race, year)
     raise UnknownDataError unless SUBJECT.include?(subject)
-    subj = subject.downcase.to_sym
-    rc = race.downcase.to_sym
-    yr = year.to_i
-    proficient_by_race_or_ethnicity(race)[yr][subj]
+    proficient_by_race_or_ethnicity(race)[year][subject]
   end
 
 

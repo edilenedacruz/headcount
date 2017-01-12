@@ -7,10 +7,13 @@ require_relative '../lib/statewide_test'
 require_relative '../lib/economic_profile_repository'
 require_relative '../lib/economic_profile'
 
-
 class DistrictRepository
   include DataParser
-  attr_reader :districts, :enrollment_repo, :statewide_test_repo, :economic_profile_repo
+  attr_reader :districts,
+              :enrollment_repo,
+              :statewide_test_repo,
+              :economic_profile_repo
+
   def initialize
     @districts = {}
     @enrollment_repo = EnrollmentRepository.new
@@ -28,10 +31,9 @@ class DistrictRepository
   def dr_repo(csv_file)
 
     kinder_data = csv_file[1]
-    kinder_data.map do |row|
-      name = row[:location].upcase
-      @districts[name] = District.new({:name => name}, self) if !find_by_name(name)
-    end
+    kinder_data.map { |row| name = row[:location].upcase
+      @districts[name] = District.new({:name => name
+        }, self) if !find_by_name(name)}
   end
 
 

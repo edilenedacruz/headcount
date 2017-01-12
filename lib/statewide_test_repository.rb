@@ -1,10 +1,10 @@
 require 'csv'
-require_relative '../lib/statewide_test'
 require_relative 'data_parser'
 
 class StatewideTestRepository
   include DataParser
   attr_reader :statewide_tests
+
   def initialize
     @statewide_tests = {}
   end
@@ -36,7 +36,8 @@ class StatewideTestRepository
     subject = score_or_race.downcase.to_sym
     data = row[:data].to_s[0..4].to_f
     name = row[:location].upcase
-    @statewide_tests[name] = StatewideTest.new( {:name => name, csv_files[0] => {year => {subject => data}}})
+    @statewide_tests[name] = StatewideTest.new( {:name => name,
+      csv_files[0] => {year => {subject => data}}})
   end
 
   def fills_repo(csv_files, row)

@@ -1,6 +1,8 @@
 
 class District
-  attr_reader :name, :district_repo
+  attr_reader :name,
+              :district_repo
+
   def initialize(district_data, district_repo = nil)
     @name = district_data[:name].upcase
     @district_repo = district_repo

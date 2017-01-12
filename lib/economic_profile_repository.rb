@@ -5,6 +5,7 @@ require_relative '../lib/data_parser'
 class EconomicProfileRepository
   include DataParser
   attr_reader :economic_profiles
+
   def initialize
     @economic_profiles = {}
   end
@@ -152,7 +153,8 @@ end
 #     year_range = convert_date_range(row[:timeframe])
 #     data = row[:data].to_i
 #     name = row[:location].upcase
-#     @economic_profiles[name] = EconomicProfile.new( {:name => name, csv_files[0] => {year_range => data}} )
+#     @economic_profiles[name] = EconomicProfile.new( {:name => name,
+# csv_files[0] => {year_range => data}} )
 #   end
 #
 #   def convert_date_range(year_range)
