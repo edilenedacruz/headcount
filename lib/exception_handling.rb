@@ -1,4 +1,7 @@
-class UnknowDataError < StandardError
+class UnknownDataError < StandardError
+end
+
+class UnknownRaceError < StandardError
 end
 
 class InsufficientInformationError < StandardError

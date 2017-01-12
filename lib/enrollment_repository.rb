@@ -7,6 +7,7 @@ require 'pry'
 class EnrollmentRepository
   include DataParser
   attr_reader :enrollments
+
   def initialize
     @enrollments = {}
   end
