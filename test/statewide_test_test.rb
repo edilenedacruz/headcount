@@ -94,13 +94,13 @@ class StatewideTestTest < Minitest::Test
 
 
     testing = str.find_by_name("ACADEMY 20")
-assert_in_delta 0.653, testing.proficient_for_subject_by_grade_in_year(:math, 8, 2011), 0.005
+    assert_in_delta 0.653, testing.proficient_for_subject_by_grade_in_year(:math, 8, 2011), 0.005
 
-testing = str.find_by_name("WRAY SCHOOL DISTRICT RD-2")
-assert_in_delta 0.89, testing.proficient_for_subject_by_grade_in_year(:reading, 3, 2014), 0.005
+    testing = str.find_by_name("WRAY SCHOOL DISTRICT RD-2")
+    assert_in_delta 0.89, testing.proficient_for_subject_by_grade_in_year(:reading, 3, 2014), 0.005
 
-# testing = str.find_by_name("PLATEAU VALLEY 50")
-# assert_equal "N/A", testing.proficient_for_subject_by_grade_in_year(:reading, 8, 2011)
+    testing = str.find_by_name("PLATEAU VALLEY 50")
+    assert_equal "N/A", testing.proficient_for_subject_by_grade_in_year(:reading, 8, 2011)
 
 
   end

@@ -62,8 +62,8 @@ class StatewideTest
       else
         gr = eighth_grade
       end
+      return "N/A" if gr[year][subject] == 0.0
       gr[year][subject]
-    # return "N/A" if gr[year][subject] == 0.0
   end
 
   def proficient_for_subject_by_race_in_year(subject, race, year)

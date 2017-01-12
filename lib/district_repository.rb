@@ -4,14 +4,18 @@ require_relative '../lib/headcount_analyst'
 require_relative '../lib/district'
 require_relative '../lib/statewide_test_repository'
 require_relative '../lib/statewide_test'
+require_relative '../lib/economic_profile_repository'
+require_relative '../lib/economic_profile'
+
 
 class DistrictRepository
   include DataParser
-  attr_reader :districts, :enrollment_repo, :statewide_test_repo
+  attr_reader :districts, :enrollment_repo, :statewide_test_repo, :economic_profile_repo
   def initialize
     @districts = {}
     @enrollment_repo = EnrollmentRepository.new
     @statewide_test_repo = StatewideTestRepository.new
+    @economic_profile_repo = EconomicProfileRepository.new
   end
 
   def load_data(files)
@@ -47,6 +51,10 @@ class DistrictRepository
 
   def connect_with_statewide_test(name)
     statewide_test_repo.statewide_tests[name.upcase]
+  end
+
+  def connect_with_economic_profile(name)
+    economic_profile_repo.economic_profiles[name.upcase]
   end
 
 end

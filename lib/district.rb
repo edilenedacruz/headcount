@@ -13,4 +13,8 @@ class District
   def statewide_test
     district_repo.connect_with_statewide_test(name)
   end
+
+  def economic_profile
+    district_repo.connect_with_economic_profile(name)
+  end
 end
